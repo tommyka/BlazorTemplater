@@ -207,6 +207,27 @@ namespace BlazorTemplater.Tests
 
         #endregion
 
+        #region Cascading Values with inheritance
+
+        [TestMethod]
+        public void ComponentRenderer_CascadingValues_with_inheritance_Test()
+        {
+            const string expected = "<p>The name is Bill</p>";
+            var info = new CascadeInfo() { Name = "Bill" };
+
+            var html = new ComponentRenderer<CascadeParentWithInheritance>()
+                .Set(c => c.Info, info)
+                .Render();
+
+            // trim leading space and trailing CRLF from output
+            var actual = html.Trim();
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        #endregion
+
         #region Layouts
 
         /// <summary>
